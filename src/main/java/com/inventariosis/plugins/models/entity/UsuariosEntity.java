@@ -24,7 +24,7 @@ public class UsuariosEntity implements Serializable {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(nullable = false)
 	private String nombre;
@@ -38,11 +38,11 @@ public class UsuariosEntity implements Serializable {
 	@Column(name = "fecha_ingreso")
 	private Date fechaIngreso;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

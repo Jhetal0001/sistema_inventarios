@@ -21,8 +21,25 @@ public class TipoCargoEntity implements Serializable {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Long id;
+
 	@Column(name = "nombre_cargo", nullable = false)
 	private String nombreCargo;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombreCargo() {
+		return nombreCargo;
+	}
+
+	public void setNombreCargo(String nombreCargo) {
+		this.nombreCargo = nombreCargo;
+	}
+
 }
