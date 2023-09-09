@@ -47,4 +47,13 @@ public interface ProductoDao {
 	 */
 	void updateProducto(ProductoEntity producto);
 
+	/**
+	 * 
+	 * Método que permite eliminar un producto registrado
+	 * Creado el 9/09/2023 a las 5:09:38 a. m.
+	 * @author Jhon Vasquez
+	 * @param producto
+	 */
+	void eliminarProducto(ProductoEntity producto);
+
 }

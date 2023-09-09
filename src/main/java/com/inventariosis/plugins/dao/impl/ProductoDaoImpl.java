@@ -65,4 +65,15 @@ public class ProductoDaoImpl implements ProductoDao {
 	public void updateProducto(ProductoEntity producto) {
 		entityManager.merge(producto);
 	}
+
+	/*
+	 * 
+	 * @see
+	 * com.inventariosis.plugins.dao.ProductoDao#eliminarProducto(com.inventariosis.
+	 * plugins.models.entity.ProductoEntity)
+	 */
+	@Override
+	public void eliminarProducto(ProductoEntity producto) {
+		entityManager.remove(producto);
+	}
 }
