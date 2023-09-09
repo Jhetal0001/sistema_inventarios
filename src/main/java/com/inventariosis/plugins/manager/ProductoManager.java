@@ -52,4 +52,15 @@ public interface ProductoManager {
 	 */
 	ResponseEntity<String> updateProducto(ProductoDTO productoDTO);
 
+	/**
+	 * Servicio que permite eliminar un producto Creado el 9/09/2023 a las 5:21:01
+	 * a. m.
+	 * 
+	 * @author Jhon Vasquez
+	 * @param idProducto
+	 * @param idUsuario
+	 * @return
+	 */
+	ResponseEntity<String> removeProducto(Long idProducto, Long idUsuario);
+
 }

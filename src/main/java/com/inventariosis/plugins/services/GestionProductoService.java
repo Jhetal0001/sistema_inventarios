@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventariosis.plugins.manager.ProductoManager;
@@ -45,7 +47,7 @@ public class GestionProductoService {
 	private ResponseEntity<List<ProductoEntity>> findAllProductos() {
 		return productoManager.finAllProductos();
 	}
-	
+
 	@PostMapping("/registrarProducto")
 	@Operation(summary = "Permite Registrar un Producto")
 	@ApiResponses(value = {
@@ -54,7 +56,7 @@ public class GestionProductoService {
 	private ResponseEntity<String> registrarProducto(@RequestBody ProductoDTO producto) {
 		return productoManager.setProducto(producto);
 	}
-	
+
 	@PostMapping("/actualizarProducto")
 	@Operation(summary = "Permite actualizar un Producto")
 	@ApiResponses(value = {
@@ -63,4 +65,15 @@ public class GestionProductoService {
 	private ResponseEntity<String> actualizarProducto(@RequestBody ProductoDTO producto) {
 		return productoManager.updateProducto(producto);
 	}
+
+	@DeleteMapping("/eliminarProducto")
+	@Operation(summary = "Permite eliminar un Producto")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha eliminado el producto exitosamente", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ProductoEntity.class)) }) })
+	private ResponseEntity<String> eliminarProducto(@RequestParam("idProducto") Long idProducto,
+			@RequestParam("idUsuario") Long idUsuario) {
+		return productoManager.removeProducto(idProducto, idUsuario);
+	}
+
 }

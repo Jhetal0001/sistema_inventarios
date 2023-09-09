@@ -109,4 +109,29 @@ public class ProductoManagerImpl implements ProductoManager {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el producto");
 		}
 	}
+
+	/*
+	 * 
+	 * @see
+	 * com.inventariosis.plugins.manager.ProductoManager#removeProducto(java.lang.
+	 * Long, java.lang.Long)
+	 */
+	@Override
+	@Transactional
+	public ResponseEntity<String> removeProducto(Long idProducto, Long idUsuario) {
+		try {
+			ProductoEntity producto = productoDao.findProductoById(idProducto);
+			if (producto.getUsuarioRegistra().getId().equals(idUsuario)) {
+				productoDao.eliminarProducto(producto);
+				String mensaje = "Se eliminó el producto exitosamente";
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensaje);
+			} else {
+				String mensaje = "Solo el usuario que registró el producto puede eliminarlo";
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensaje);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al Eliminar el producto");
+		}
+	}
 }
