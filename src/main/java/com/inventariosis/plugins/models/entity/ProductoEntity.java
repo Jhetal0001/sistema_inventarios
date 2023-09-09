@@ -3,6 +3,7 @@ package com.inventariosis.plugins.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,17 +27,18 @@ public class ProductoEntity implements Serializable {
 	private static final long serialVersionUID = -5542856670557160125L;
 
 	@Id
+	@Basic(optional = false)
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(name = "nombre_producto", nullable = false, unique = true)
 	private String nombreProducto;
 
-	private int cantidad;
+	private Long cantidad;
 
 	@Column(name = "fecha_ingreso")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 
 	@ManyToOne
@@ -46,14 +50,25 @@ public class ProductoEntity implements Serializable {
 	private UsuariosEntity usuarioModifica;
 
 	@Column(name = "fecha_modifica")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaModifica;
 
-	public int getId() {
+	@PrePersist
+	protected void onCreate() {
+		fechaIngreso = new Date();
+		fechaModifica = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		fechaModifica = new Date();
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,11 +80,11 @@ public class ProductoEntity implements Serializable {
 		this.nombreProducto = nombreProducto;
 	}
 
-	public int getCantidad() {
+	public Long getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Long cantidad) {
 		this.cantidad = cantidad;
 	}
 
@@ -79,6 +94,10 @@ public class ProductoEntity implements Serializable {
 
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
+	}
+
+	public void setFechaModifica(Date fechaModifica) {
+		this.fechaModifica = fechaModifica;
 	}
 
 	public UsuariosEntity getUsuarioRegistra() {
@@ -99,10 +118,6 @@ public class ProductoEntity implements Serializable {
 
 	public Date getFechaModifica() {
 		return fechaModifica;
-	}
-
-	public void setFechaModifica(Date fechaModifica) {
-		this.fechaModifica = fechaModifica;
 	}
 
 }
