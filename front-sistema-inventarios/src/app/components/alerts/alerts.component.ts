@@ -1,61 +1,62 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
-interface infoAlert {
-  message: string;
-  type: string;
-}
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { AlertClass, infoAlert } from 'src/app/models/alerts.model';
 
 @Component({
   selector: 'app-alerts',
   styleUrls: ['./alerts.component.scss'],
-  templateUrl: `./alerts.component.html`,
+  templateUrl: './alerts.component.html',
   animations: [
     trigger('fadeInOut', [
-      state('void',
+      state(
+        'void',
         style({
           opacity: 0,
-          transform: 'translateX(100%)'
-        })),
+          transform: 'translateX(100%)',
+        })
+      ),
       transition('void <=> *', animate(300)),
     ]),
   ],
 })
-
 export class AlertsComponent implements OnInit {
-
-
   @ViewChild('alert', { static: true }) miDivRef!: ElementRef;
-  alert$ = this.utilsService.alert$;
-  infoAlert!: infoAlert;
+  alerts: infoAlert[] = []; // Cambia a un arreglo de alertas
+
+  alertClasses: AlertClass = {
+    info: 'fa-circle-info fa-beat',
+    warning: 'fa-circle-exclamation fa-fade',
+    success: 'fa-circle-check fa-bounce',
+    danger: 'fa-circle-exclamation fa-fade',
+    primary: 'fa-shield fa-flip',
+    secundary: 'fa-gear fa-spin',
+    light: 'fa-lightbulb fa-beat-fade',
+  };
 
   constructor(private utilsService: UtilsService) {}
 
-  agregarHTML() {
-    if (this.miDivRef) {
-      const miDiv = this.miDivRef.nativeElement;
-      const contenidoHTML = `
-        <div class="alert-ico"><i class="fa-solid fa-circle-info"></i></div>
-        <span>Hola este es Mi nuevo Alert</span>
-        `;
-      miDiv.innerHTML = contenidoHTML;
-    }
-  }
-
-  clearAlert(){
-    this.utilsService.clearAlert();
-  }
-
   ngOnInit() {
-    this.alert$.subscribe((alert) => {
+    this.utilsService.alert$.subscribe((alert) => {
       if (alert) {
-        this.infoAlert = alert;
+        this.alerts.push(alert); // Agrega la nueva alerta al arreglo
         setTimeout(() => {
-          this.utilsService.clearAlert();
+          this.clearAlert(alert);
         }, 5000);
       }
     });
   }
 
+  clearAlert(alert: infoAlert) {
+    const index = this.alerts.indexOf(alert);
+    if (index !== -1) {
+      this.alerts.splice(index, 1); // Elimina la alerta del arreglo
+    }
+  }
 }
