@@ -1,6 +1,9 @@
 <div>
   <h1 class="mt-5">Gestión de Producto</h1>
-  <h4 class="position-absolute top-0 m-5">Usuario: {{ user?.nombre }}</h4>
+  <div class="position-absolute d-flex top-25">
+    <h4 class="ms-5">Usuario: {{ user?.nombre }}</h4>
+    <h4 class="text-success cursor_pointer" routerLink="home"><i class="fa-solid ms-3 fa-arrows-rotate"></i></h4>
+  </div>
 </div>
 
 <div class="px-2 m-5">
@@ -10,7 +13,7 @@
         <th scope="col-auto">#</th>
         <th scope="col-auto">
           ID Producto
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -18,17 +21,43 @@
             <form class="p-2 mb-2 bg-body-tertiary border-bottom">
               <input
                 type="search"
-                name="id_product"
                 class="form-control"
                 autocomplete="false"
-                [placeholder]="'Filtrar por ID Producto'"
+                placeholder="Filtrar por Id Producto"
+                name="searchInput"
+                [(ngModel)]="filtroIdProducto"
+                (input)="aplicarFiltro('idProducto')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('idProducto')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('idProducto')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Producto
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -40,15 +69,39 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtro"
+                [(ngModel)]="filtroProducto"
                 (input)="aplicarFiltro('producto')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('producto')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('producto')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Cantidad
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -60,15 +113,39 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtro"
+                [(ngModel)]="filtroCantidad"
                 (input)="aplicarFiltro('cantidad')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('cantidad')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('cantidad')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Fecha Ingreso
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -80,15 +157,39 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtroFecha"
+                [(ngModel)]="filtroFechaIngreso"
                 (input)="aplicarFiltro('fechaIngreso')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('fechaIngreso')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('fechaIngreso')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Usuario Ingresa
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -100,15 +201,39 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtro"
+                [(ngModel)]="filtroUsuarioIngresa"
                 (input)="aplicarFiltro('usuarioIngresa')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('usuarioIngresa')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('usuarioIngresa')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Fecha Modifica
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -120,15 +245,39 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtroFecha"
+                [(ngModel)]="filtroFechaModifica"
                 (input)="aplicarFiltro('fechaModifica')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('fechaModifica')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('fechaModifica')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
           Usuario Modifica
-          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
           <div
             class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
             data-bs-theme="light"
@@ -140,10 +289,34 @@
                 autocomplete="false"
                 placeholder="Filtrar por Producto"
                 name="searchInput"
-                [(ngModel)]="filtro"
+                [(ngModel)]="filtroUsuarioModifica"
                 (input)="aplicarFiltro('usuarioModifica')"
               />
             </form>
+            <ul class="list-unstyled mb-0 cursor_pointer">
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarAscendente('usuarioModifica')"
+                >
+                  <span
+                    class="d-inline-block bg-success rounded-circle p-1"
+                  ></span>
+                  Orden Ascendente
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  (click)="ordenarDescendente('usuarioModifica')"
+                >
+                  <span
+                    class="d-inline-block bg-primary rounded-circle p-1"
+                  ></span>
+                  Orden Descendente
+                </a>
+              </li>
+            </ul>
           </div>
         </th>
         <th scope="col-auto">
