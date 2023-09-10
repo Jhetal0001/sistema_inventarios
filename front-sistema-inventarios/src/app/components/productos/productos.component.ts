@@ -45,7 +45,7 @@ export class ProductosComponent implements OnInit {
         modalRef.componentInstance.updateProduct = item;
         break;
       default:
-        this.UTIL.showAlert('ha ocurrido un error','danger');
+        this.UTIL.showAlert('ha ocurrido un error', 'danger');
     }
   }
 

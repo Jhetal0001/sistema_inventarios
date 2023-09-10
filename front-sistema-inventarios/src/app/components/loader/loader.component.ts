@@ -4,10 +4,9 @@ import { UtilsService } from '../../services/utils.service';
 @Component({
   selector: 'app-loader',
   templateUrl: `./loader.component.html`,
-  styleUrls: ['./loader.component.scss']
+  styleUrls: ['./loader.component.scss'],
 })
-export class LoaderComponent implements OnInit{
-
+export class LoaderComponent implements OnInit {
   loading$ = this.load.loadind$;
   constructor(private load: UtilsService) {}
 
