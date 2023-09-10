@@ -1,0 +1,51 @@
+<div *ngIf="addProduct" class="border p-5 rounded">
+  <form [formGroup]="addProductForm" (ngSubmit)="getionarProducts('agregar')">
+    <h3 class="text-center mb-4">Agregar Producto</h3>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="nombre_producto">Nombre</span>
+      <input type="text" name="nombre" class="form-control" placeholder="Nombre" aria-label="nombre" aria-describedby="nombre" formControlName="nombre">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="cantidad">Cantidad</span>
+      <input type="number" name="cantidad" min="0" step="1" value="0" class="form-control" placeholder="Cantidad" aria-label="cantidad" aria-describedby="cantidad" formControlName="cantidad">
+    </div>
+    <div class="input-group w-100">
+      <button class="btn btn-outline-danger col-6" type="reset" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-outline-primary col-6" type="submit" [disabled]="!addProductForm.valid">Agregar</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="updateProduct" class="border p-5 rounded">
+  <form>
+    <h3 class="text-center mb-4">Modificar Producto</h3>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="nombre_producto">Nombre</span>
+      <input type="text" class="form-control" name="nombre" [(ngModel)]="updateProduct.nombreProducto" placeholder="Nombre" aria-label="nombre" aria-describedby="nombre">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="cantidad">Cantidad</span>
+      <input type="number" min="0" step="1" value="0" name="cantidad" class="form-control" [(ngModel)]="updateProduct.cantidad"  placeholder="Cantidad" aria-label="cantidad" aria-describedby="cantidad">
+    </div>
+    <div class="input-group w-100">
+      <button class="btn btn-outline-danger col-6" type="reset" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-outline-primary col-6" type="submit" (click)="getionarProducts('modificar')">Guardar</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="deleteProduct">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Producto</h1>
+      <button type="button" class="btn-close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      Desea eliminar el automóvil: <b>{{deleteProduct.nombreProducto}}</b>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="getionarProducts('eliminar')">Confirmar</button>
+    </div>
+  </div>
+</div>

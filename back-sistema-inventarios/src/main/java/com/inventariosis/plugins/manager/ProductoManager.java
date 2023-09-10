@@ -1,7 +1,5 @@
 package com.inventariosis.plugins.manager;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
 import com.inventariosis.plugins.models.dto.ProductoDTO;
@@ -28,7 +26,7 @@ public interface ProductoManager {
 	 * @author Jhon Vasquez
 	 * @return
 	 */
-	ResponseEntity<List<ProductoEntity>> finAllProductos();
+	ResponseEntity<?> finAllProductos();
 
 	/**
 	 * 
@@ -37,9 +35,9 @@ public interface ProductoManager {
 	 * 
 	 * @author Jhon Vasquez
 	 * @param producto
-	 * @return
+	 * @return ResponseEntity<List<ProductoEntity>>
 	 */
-	ResponseEntity<String> setProducto(ProductoDTO productoDTO);
+	ResponseEntity<?> setProducto(ProductoDTO productoDTO);
 
 	/**
 	 * 
@@ -50,7 +48,7 @@ public interface ProductoManager {
 	 * @param productoDTO
 	 * @return
 	 */
-	ResponseEntity<String> updateProducto(ProductoDTO productoDTO);
+	ResponseEntity<?> updateProducto(ProductoDTO productoDTO);
 
 	/**
 	 * Servicio que permite eliminar un producto Creado el 9/09/2023 a las 5:21:01
@@ -61,6 +59,6 @@ public interface ProductoManager {
 	 * @param idUsuario
 	 * @return
 	 */
-	ResponseEntity<String> removeProducto(Long idProducto, Long idUsuario);
+	ResponseEntity<?> removeProducto(Long idProducto, Long idUsuario);
 
 }

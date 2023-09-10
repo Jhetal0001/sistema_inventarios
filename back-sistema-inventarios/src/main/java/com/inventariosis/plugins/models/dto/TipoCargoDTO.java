@@ -10,7 +10,7 @@ public class TipoCargoDTO implements Serializable {
 	private static final long serialVersionUID = 2969346441124040251L;
 
 	private Long id;
-	private String nombre;
+	private String nombreCargo;
 
 	public Long getId() {
 		return id;
@@ -20,12 +20,12 @@ public class TipoCargoDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreCargo() {
+		return nombreCargo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreCargo(String nombre) {
+		this.nombreCargo = nombre;
 	}
 
 }

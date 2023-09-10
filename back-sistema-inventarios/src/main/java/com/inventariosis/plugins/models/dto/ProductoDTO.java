@@ -14,8 +14,8 @@ public class ProductoDTO implements Serializable {
 	private String nombreProducto;
 	private Long cantidad;
 	private Date fechaIngreso;
-	private Long usuarioRegistra;
-	private Long usuarioModifica;
+	private UsuarioDTO usuarioRegistra;
+	private UsuarioDTO usuarioModifica;
 	private Date fechaModifica;
 
 	public Long getId() {
@@ -50,19 +50,19 @@ public class ProductoDTO implements Serializable {
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	public Long getUsuarioRegistra() {
+	public UsuarioDTO getUsuarioRegistra() {
 		return usuarioRegistra;
 	}
 
-	public void setUsuarioRegistra(Long usuarioRegistra) {
+	public void setUsuarioRegistra(UsuarioDTO usuarioRegistra) {
 		this.usuarioRegistra = usuarioRegistra;
 	}
 
-	public Long getUsuarioModifica() {
+	public UsuarioDTO getUsuarioModifica() {
 		return usuarioModifica;
 	}
 
-	public void setUsuarioModifica(Long usuarioModifica) {
+	public void setUsuarioModifica(UsuarioDTO usuarioModifica) {
 		this.usuarioModifica = usuarioModifica;
 	}
 

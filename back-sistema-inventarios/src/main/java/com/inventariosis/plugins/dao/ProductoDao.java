@@ -2,6 +2,8 @@ package com.inventariosis.plugins.dao;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.inventariosis.plugins.models.entity.ProductoEntity;
 
 public interface ProductoDao {
@@ -35,7 +37,7 @@ public interface ProductoDao {
 	 * @author Jhon Vasquez
 	 * @param producto
 	 */
-	void registrarProducto(ProductoEntity producto);
+	ResponseEntity<?> registrarProducto(ProductoEntity producto);
 
 	/**
 	 * 

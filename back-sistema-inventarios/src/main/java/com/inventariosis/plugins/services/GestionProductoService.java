@@ -1,7 +1,5 @@
 package com.inventariosis.plugins.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +42,7 @@ public class GestionProductoService {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha obtenido la lista de productos", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ProductoEntity.class)) }) })
-	private ResponseEntity<List<ProductoEntity>> findAllProductos() {
+	private ResponseEntity<?> findAllProductos() {
 		return productoManager.finAllProductos();
 	}
 
@@ -53,7 +51,7 @@ public class GestionProductoService {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha registrado el producto exitosamente", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ProductoEntity.class)) }) })
-	private ResponseEntity<String> registrarProducto(@RequestBody ProductoDTO producto) {
+	private ResponseEntity<?> registrarProducto(@RequestBody ProductoDTO producto) {
 		return productoManager.setProducto(producto);
 	}
 
@@ -62,7 +60,7 @@ public class GestionProductoService {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha actualizado el producto exitosamente", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ProductoEntity.class)) }) })
-	private ResponseEntity<String> actualizarProducto(@RequestBody ProductoDTO producto) {
+	private ResponseEntity<?> actualizarProducto(@RequestBody ProductoDTO producto) {
 		return productoManager.updateProducto(producto);
 	}
 
@@ -71,7 +69,7 @@ public class GestionProductoService {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha eliminado el producto exitosamente", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ProductoEntity.class)) }) })
-	private ResponseEntity<String> eliminarProducto(@RequestParam("idProducto") Long idProducto,
+	private ResponseEntity<?> eliminarProducto(@RequestParam("idProducto") Long idProducto,
 			@RequestParam("idUsuario") Long idUsuario) {
 		return productoManager.removeProducto(idProducto, idUsuario);
 	}

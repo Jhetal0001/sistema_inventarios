@@ -1,0 +1,110 @@
+<div>
+  <h1 class="mt-5">
+    Gestión de Producto
+  </h1>
+  <h4 class="position-absolute top-0 m-5">Usuario: {{user?.nombre}}</h4>
+</div>
+
+<div class="px-2 m-5">
+  <table class="table table-success table-striped table-hover">
+    <thead>
+      <tr class="fs-6">
+        <th scope="col-auto">#</th>
+        <th scope="col-auto">ID Producto
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="search" name="id_product" class="form-control" autocomplete="false" [placeholder]="'Filtrar por ID Producto'">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Producto
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="search" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtro" (input)="aplicarFiltro('producto')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Cantidad
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="search" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtro" (input)="aplicarFiltro('cantidad')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Fecha Ingreso
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="date" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtroFecha" (input)="aplicarFiltro('fechaIngreso')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Usuario Ingresa
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="search" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtro" (input)="aplicarFiltro('usuarioIngresa')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Fecha Modifica
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="date" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtroFecha" (input)="aplicarFiltro('fechaModifica')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">Usuario Modifica
+          <i class="fa-solid fa-sort dropdown" data-bs-toggle="dropdown"></i>
+          <div class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"         data-bs-theme="light">
+            <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+              <input type="search" class="form-control" autocomplete="false" placeholder="Filtrar por Producto" name="searchInput" [(ngModel)]="filtro" (input)="aplicarFiltro('usuarioModifica')">
+            </form>
+          </div>
+        </th>
+        <th scope="col-auto">
+          <button class="btn dropdown btn-outline-primary" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-plus cursor_pointer"></i>
+          <ul class="dropdown-menu p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+            <li><a class="dropdown-item rounded-2 " (click)="gestionarProducto(true, 'agregar')">Agregar Producto</a></li>
+          </ul>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cursor_pointer" *ngFor="let item of listaFiltrada; let i = index;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.id}}</td>
+        <td>{{item.nombreProducto}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>{{item.fechaIngreso | date}}</td>
+        <td>{{item.usuarioRegistra.nombre}}</td>
+        <td>{{item.fechaModifica | date}}</td>
+        <td>{{item.usuarioModifica.nombre}}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-outline-primary" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <ul class="dropdown-menu p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+              <li><a class="dropdown-item rounded-2 " (click)="gestionarProducto(item, 'modifica')">Modificar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item rounded-2" (click)="gestionarProducto(item, 'eliminar')">Eliminar</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td scope="col-12">Total Unidades</td>
+        <th scope="row"></th>
+        <td colspan="col-sm-12">{{totalProducts}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

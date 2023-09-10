@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.inventariosis.plugins.dao.ProductoDao;
@@ -51,8 +54,15 @@ public class ProductoDaoImpl implements ProductoDao {
 	 * .plugins.models.entity.ProductoEntity)
 	 */
 	@Override
-	public void registrarProducto(ProductoEntity producto) {
-		entityManager.persist(producto);
+	public ResponseEntity<?> registrarProducto(ProductoEntity producto) {
+		try {
+			entityManager.persist(producto);
+			return ResponseEntity.ok("Registro Exitoso");
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+			String mensajeError = "Ya existe un producto con el mismo nombre.";
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensajeError);
+		}
 	}
 
 	/*

@@ -51,7 +51,7 @@ public class ProductoManagerImpl implements ProductoManager {
 		try {
 			List<ProductoEntity> productos = productoDao.findAllProductos();
 			return ResponseEntity.ok(productos);
-		} catch (Exception e) {
+		} catch (DataIntegrityViolationException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
@@ -63,24 +63,15 @@ public class ProductoManagerImpl implements ProductoManager {
 	 */
 	@Override
 	@Transactional
-	public ResponseEntity<String> setProducto(ProductoDTO productoDTO) {
-		try {
+	public ResponseEntity<?> setProducto(ProductoDTO productoDTO) {
 			ProductoEntity producto = new ProductoEntity();
-			UsuariosEntity usuarioRegistra = usuariosDao.findUsuarioById(productoDTO.getUsuarioRegistra());
+			UsuariosEntity usuarioRegistra = usuariosDao.findUsuarioById(productoDTO.getUsuarioRegistra().getId());
 			producto.setNombreProducto(productoDTO.getNombreProducto());
 			producto.setCantidad(productoDTO.getCantidad());
 			producto.setUsuarioRegistra(usuarioRegistra);
 			producto.setUsuarioModifica(usuarioRegistra);
-			productoDao.registrarProducto(producto);
-			return ResponseEntity.ok("Registro exitoso");
-		} catch (DataIntegrityViolationException e) {
-			e.printStackTrace();
-			String mensajeError = "Ya existe un producto con el mismo nombre.";
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensajeError);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el producto");
-		}
+			productoDao.registrarProducto(producto);		
+			return this.finAllProductos();
 	}
 
 	/*
@@ -90,16 +81,16 @@ public class ProductoManagerImpl implements ProductoManager {
 	 */
 	@Override
 	@Transactional
-	public ResponseEntity<String> updateProducto(ProductoDTO productoDTO) {
+	public ResponseEntity<?> updateProducto(ProductoDTO productoDTO) {
 		try {
 			ProductoEntity producto = productoDao.findProductoById(productoDTO.getId());
-			UsuariosEntity usuarioModifica = usuariosDao.findUsuarioById(productoDTO.getUsuarioModifica());
+			UsuariosEntity usuarioModifica = usuariosDao.findUsuarioById(productoDTO.getUsuarioModifica().getId());
 
 			producto.setNombreProducto(productoDTO.getNombreProducto());
 			producto.setCantidad(productoDTO.getCantidad());
 			producto.setUsuarioModifica(usuarioModifica);
 			productoDao.updateProducto(producto);
-			return ResponseEntity.ok("Registro exitoso");
+			return this.finAllProductos();
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			String mensajeError = "Ya existe un producto con el mismo nombre.";
@@ -118,13 +109,12 @@ public class ProductoManagerImpl implements ProductoManager {
 	 */
 	@Override
 	@Transactional
-	public ResponseEntity<String> removeProducto(Long idProducto, Long idUsuario) {
+	public ResponseEntity<?> removeProducto(Long idProducto, Long idUsuario) {
 		try {
 			ProductoEntity producto = productoDao.findProductoById(idProducto);
 			if (producto.getUsuarioRegistra().getId().equals(idUsuario)) {
 				productoDao.eliminarProducto(producto);
-				String mensaje = "Se eliminó el producto exitosamente";
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensaje);
+				return this.finAllProductos();
 			} else {
 				String mensaje = "Solo el usuario que registró el producto puede eliminarlo";
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensaje);
