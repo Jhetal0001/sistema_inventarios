@@ -1,0 +1,14 @@
+<div *ngIf="alert$ | async as alert" class="alert-body position-fixed end-0 {{alert.type}} d-flex border_r10 align-items-center justify-content-center z-index-100000" [@fadeInOut] (click)="clearAlert()" #alert>
+  <div class="content-ico" >
+    <ng-container [ngSwitch]="alert.type">
+      <i class="fa-solid fa-circle-info fa-bounce" *ngSwitchCase="'success'"></i>
+      <i class="fa-solid fa-circle-exclamation fa-fade" *ngSwitchCase="'danger'"></i>
+      <i class="fa-solid fa-triangle-exclamation fa-fade" *ngSwitchCase="'warning'"></i>
+      <i class="fa-solid fa-shield fa-flip" *ngSwitchCase="'primary'"></i>
+      <i class="fa-solid fa-gear fa-spin" *ngSwitchCase="'secundary'"></i>
+      <i class="fa-solid fa-lightbulb fa-beat-fade" *ngSwitchCase="'light'"></i>
+      <i class="fa-solid fa-circle" *ngSwitchDefault></i>
+    </ng-container>
+  </div>
+  <div class="message">{{alert.message}}</div>
+</div>
