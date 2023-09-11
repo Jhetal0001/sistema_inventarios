@@ -1,0 +1,117 @@
+.alert-body {
+  top: 60px;
+  min-width: 150px;
+  height: 60px;
+  & .message {
+    flex-grow: 1;
+    padding: 0 25px 0 45px;
+  }
+}
+.z-index-100000 {
+  z-index: 100000;
+}
+
+.success {
+  background-color: #008d00;
+  border: 1px solid #acffac;
+  & i {
+    position: absolute;
+    top: -23%;
+    left: -3%;
+    color: #00ff00;
+    font-size: 40px;
+    --fa-bounce-height: 1;
+  }
+  & .message {
+    color: #ffffff;
+    font-weight: 600;
+  }
+}
+.info {
+  background-color: #020081a1;
+  border: 1px solid #8a8aff;
+  & i {
+    position: absolute;
+    top: -23%;
+    left: -3%;
+    color: #8a8aff;
+    font-size: 40px;
+    --fa-animation-duration: 2s;
+    --fa-fade-opacity: 0.6;
+  }
+  & .message {
+    color: #ffffff;
+  }
+}
+.danger {
+  background-color: #9e0000;
+  border: 1px solid #ff9191;
+  & i {
+    position: absolute;
+    top: -23%;
+    left: -3%;
+    color: #ff5858;
+    font-size: 40px;
+  }
+  & .message {
+    color: #ffffff;
+  }
+}
+.warning {
+  background-color: #a68d00;
+  border: 1px solid #fff19f;
+  & i {
+    position: absolute;
+    top: -21%;
+    left: -3%;
+    color: #ffd900;
+    font-size: 40px;
+  }
+  & .message {
+    color: #ffffff;
+  }
+}
+.primary {
+  background-color: #5b00a6;
+  border: 1px solid #d29bff;
+  & i {
+    position: absolute;
+    top: -23%;
+    left: -3%;
+    color: #8c00ff;
+    font-size: 40px;
+    --fa-animation-duration: 3s;
+  }
+  & .message {
+    color: #fcf9ff;
+  }
+}
+.secundary {
+  background-color: #00719e;
+  border: 1px solid #81dbff;
+  & i {
+    position: absolute;
+    top: -21%;
+    left: -3%;
+    color: #00b7ff;
+    font-size: 40px;
+    --fa-animation-duration: 8s;
+  }
+  & .message {
+    color: #feffff;
+  }
+}
+.light {
+  background-color: #aff0e5c2;
+  border: 1px solid #e4f5fc;
+  & i {
+    position: absolute;
+    top: -21%;
+    left: -3%;
+    color: #dbe646;
+    font-size: 40px;
+  }
+  & .message {
+    color: #1c1800;
+  }
+}

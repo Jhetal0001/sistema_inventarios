@@ -1,0 +1,19 @@
+<div
+  *ngFor="let alert of alerts; let i = index"
+  [@fadeInOut]
+  [style]="{ top: (i + 0.5) * 80 + 'px' }"
+  class="alert-item position-fixed end-0 z-index-100000"
+>
+  <div
+    class="alert-body {{
+      alert.type
+    }} d-flex border_r10 align-items-center justify-content-center"
+    [@fadeInOut]
+    (click)="clearAlert(alert)"
+  >
+    <div class="content-ico">
+      <i class="fa-solid" [ngClass]="alertClasses[alert.type]"></i>
+    </div>
+    <div class="message">{{ alert.message }}</div>
+  </div>
+</div>
