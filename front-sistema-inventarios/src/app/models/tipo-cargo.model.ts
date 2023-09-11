@@ -1,4 +1,5 @@
+export interface Cargos extends Array<TipoCargo> {}
 export interface TipoCargo {
-  id: number
+  id?: number
   nombreCargo: string
 }

@@ -6,3 +6,18 @@
 .cursor_pointer {
   cursor: pointer;
 }
+
+.scrollbars {
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #b1b1b173;
+    border-radius: 20px;
+    border: 2px solid #c5c5c5;
+  }
+}

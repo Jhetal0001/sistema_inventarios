@@ -45,7 +45,7 @@ export class ModalProductComponent {
     switch (accion) {
       case 'eliminar':
         this.backendService
-          .deleteProduct(this.idUser.id, this.deleteProduct as Product)
+          .deleteProduct(this.idUser.id as number, this.deleteProduct as Product)
           .subscribe(
             () => this.UTIL.showAlert('Se ha eliminado el producto', 'success'),
             () =>
