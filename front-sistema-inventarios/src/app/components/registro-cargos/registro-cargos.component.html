@@ -1,0 +1,76 @@
+<div class="modal-body p-5">
+  <h4 class="text-center mb-5">Nuevo Cargo</h4>
+  <div class="rounded-3 overflow-auto scrollbars" style="height: 150px;">
+    <table class="table table-sm table-success table-striped table-hover m-0 h-100">
+      <thead>
+        <tr class="fs-6">
+          <th scope="col-auto">#</th>
+          <th scope="col-auto">
+            Nombre Cargo
+            <i class="fa-solid fa-sort dropdown cursor_pointer" data-bs-toggle="dropdown"></i>
+            <div
+              class="dropdown-menu pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
+              data-bs-theme="light"
+            >
+              <form class="p-2 mb-2 bg-body-tertiary border-bottom">
+                <input
+                  type="search"
+                  class="form-control"
+                  autocomplete="false"
+                  placeholder="Filtrar"
+                  name="searchInput"
+                  [(ngModel)]="filtroCargo"
+                  (input)="aplicarFiltro('nombre')"
+                />
+              </form>
+              <ul class="list-unstyled mb-0 cursor_pointer">
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    (click)="ordenarAscendente('nombre')"
+                  >
+                    <span
+                      class="d-inline-block bg-success rounded-circle p-1"
+                    ></span>
+                    Orden Ascendente
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    (click)="ordenarDescendente('nombre')"
+                  >
+                    <span
+                      class="d-inline-block bg-primary rounded-circle p-1"
+                    ></span>
+                    Orden Descendente
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="cursor_pointer"
+          *ngFor="let item of listaFiltrada; let i = index"
+        >
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ item.nombreCargo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="my-3">
+  <form [formGroup]="registroCargoForm" class="needs-validation" [class.was-validated]="formularioValidado" (ngSubmit)="registrarCargo()">
+    <div class="form-floating mb-3">
+      <input type="text" id="name" class="form-control rounded-3" placeholder="name" autocomplete="false" formControlName="nombre" required>
+      <label for="name">Nombre del Cargo</label>
+      <div *ngIf="formularioValidado && registroCargoForm?.get('nombre')?.hasError('required')" class="invalid-feedback">
+        El nombre es obligatorio.
+      </div>
+    </div>
+    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" >Registrar</button>
+  </form>
+</div>

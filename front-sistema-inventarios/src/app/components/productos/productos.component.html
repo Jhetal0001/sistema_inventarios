@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="px-2 m-5">
+<div class="table-container overflow-auto scrollbars px-2 mt-5 mx-5">
   <table class="table table-success table-striped table-hover">
     <thead>
       <tr class="fs-6">
@@ -386,11 +386,15 @@
           </div>
         </td>
       </tr>
+    </tbody>
+  </table>
+</div>
+<div class="px-2 mx-5 mb-3 col-4">
+  <table class="table table-info table-striped table-hover table-bordered border-info">
+    <tbody>
       <tr>
-        <th scope="row"></th>
-        <td scope="col-12">Total Unidades</td>
-        <th scope="row"></th>
-        <td colspan="col-sm-12">{{ totalProducts }}</td>
+        <td scope="col"><b>Total Unidades</b></td>
+        <td class="text-success" colspan="col"><b>{{ totalProducts }}</b></td>
       </tr>
     </tbody>
   </table>

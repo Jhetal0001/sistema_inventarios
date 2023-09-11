@@ -29,7 +29,7 @@ public class UsuariosEntity implements Serializable {
 	@Column(nullable = false)
 	private String nombre;
 
-	private int edad;
+	private Long edad;
 
 	@ManyToOne
 	@JoinColumn(name = "tipo_cargo")
@@ -54,11 +54,11 @@ public class UsuariosEntity implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int getEdad() {
+	public Long getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+	public void setEdad(Long edad) {
 		this.edad = edad;
 	}
 

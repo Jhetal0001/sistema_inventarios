@@ -10,6 +10,7 @@ public class Constantes {
     static {
         QUERYS.put("GET_USUARIOS", "SELECT u FROM UsuariosEntity u");
         QUERYS.put("GET_PRODUCTOS", "SELECT p FROM ProductoEntity p");
+        QUERYS.put("GET_CARGOS", "SELECT tc FROM TipoCargoEntity tc");
     }
 	
 }

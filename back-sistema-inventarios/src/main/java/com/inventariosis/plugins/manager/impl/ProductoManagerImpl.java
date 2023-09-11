@@ -64,14 +64,14 @@ public class ProductoManagerImpl implements ProductoManager {
 	@Override
 	@Transactional
 	public ResponseEntity<?> setProducto(ProductoDTO productoDTO) {
-			ProductoEntity producto = new ProductoEntity();
-			UsuariosEntity usuarioRegistra = usuariosDao.findUsuarioById(productoDTO.getUsuarioRegistra().getId());
-			producto.setNombreProducto(productoDTO.getNombreProducto());
-			producto.setCantidad(productoDTO.getCantidad());
-			producto.setUsuarioRegistra(usuarioRegistra);
-			producto.setUsuarioModifica(usuarioRegistra);
-			productoDao.registrarProducto(producto);		
-			return this.finAllProductos();
+		ProductoEntity producto = new ProductoEntity();
+		UsuariosEntity usuarioRegistra = usuariosDao.findUsuarioById(productoDTO.getUsuarioRegistra().getId());
+		producto.setNombreProducto(productoDTO.getNombreProducto());
+		producto.setCantidad(productoDTO.getCantidad());
+		producto.setUsuarioRegistra(usuarioRegistra);
+		producto.setUsuarioModifica(usuarioRegistra);
+		productoDao.registrarProducto(producto);
+		return this.finAllProductos();
 	}
 
 	/*

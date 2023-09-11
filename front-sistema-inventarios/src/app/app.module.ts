@@ -13,6 +13,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { ModalProductComponent } from './components/modal-product/modal-product.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { RegistroUsersComponent } from './components/registro-users/registro-users.component';
+import { RegistroCargosComponent } from './components/registro-cargos/registro-cargos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     ProductosComponent,
     ModalProductComponent,
     AlertsComponent,
-    LoaderComponent
+    LoaderComponent,
+    RegistroUsersComponent,
+    RegistroCargosComponent
   ],
   imports: [
     BrowserModule,

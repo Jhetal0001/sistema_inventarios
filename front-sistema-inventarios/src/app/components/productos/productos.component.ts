@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
 import { Product, Products } from 'src/app/models/product.model';
 import { User } from 'src/app/models/users.model';
 import { BackendService } from 'src/app/services/backend.service';
@@ -88,7 +87,9 @@ export class ProductosComponent implements OnInit {
               const fechaItem = new Date(item.fechaIngreso as Date);
 
               const fechaItemString = fechaItem.toLocaleDateString();
-              const filtroFechaString = this.formatoFecha(this.filtroFechaIngreso);
+              const filtroFechaString = this.formatoFecha(
+                this.filtroFechaIngreso
+              );
               return fechaItemString === filtroFechaString;
             });
           }
@@ -110,7 +111,9 @@ export class ProductosComponent implements OnInit {
               const fechaItem = new Date(item.fechaModifica as Date);
 
               const fechaItemString = fechaItem.toLocaleDateString();
-              const filtroFechaString = this.formatoFecha(this.filtroFechaModifica);
+              const filtroFechaString = this.formatoFecha(
+                this.filtroFechaModifica
+              );
               return fechaItemString === filtroFechaString;
             });
           }
@@ -131,10 +134,12 @@ export class ProductosComponent implements OnInit {
     this.sumTotalProducts(this.listaFiltrada as Products);
   }
 
-  ordenarAscendente(column: string){
+  ordenarAscendente(column: string) {
     switch (column) {
       case 'idProducto':
-        this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => (a.id as number) - (b.id as number));
+        this.listaFiltrada = this.listaFiltrada
+          ?.slice()
+          .sort((a, b) => (a.id as number) - (b.id as number));
         break;
       case 'producto':
         this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => {
@@ -150,7 +155,9 @@ export class ProductosComponent implements OnInit {
         });
         break;
       case 'cantidad':
-        this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => (a.cantidad as number) - (b.cantidad as number));
+        this.listaFiltrada = this.listaFiltrada
+          ?.slice()
+          .sort((a, b) => (a.cantidad as number) - (b.cantidad as number));
         break;
       case 'fechaIngreso':
         this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => {
@@ -208,10 +215,12 @@ export class ProductosComponent implements OnInit {
         break;
     }
   }
-  ordenarDescendente(column: string){
+  ordenarDescendente(column: string) {
     switch (column) {
       case 'idProducto':
-        this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => (b.id as number)- (a.id as number));
+        this.listaFiltrada = this.listaFiltrada
+          ?.slice()
+          .sort((a, b) => (b.id as number) - (a.id as number));
         break;
       case 'producto':
         this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => {
@@ -227,7 +236,9 @@ export class ProductosComponent implements OnInit {
         });
         break;
       case 'cantidad':
-        this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => (b.cantidad as number)- (a.cantidad as number));
+        this.listaFiltrada = this.listaFiltrada
+          ?.slice()
+          .sort((a, b) => (b.cantidad as number) - (a.cantidad as number));
         break;
       case 'fechaIngreso':
         this.listaFiltrada = this.listaFiltrada?.slice().sort((a, b) => {
