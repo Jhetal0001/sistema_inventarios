@@ -37,7 +37,7 @@
       <input type="date" id="date" class="form-control rounded-3" [ngClass]="{'is-invalid': formularioValidado && registroUsuarioForm.controls['fecha'].invalid}" placeholder="date" formControlName="fecha" required>
       <label for="date">Fecha de Ingreso</label>
       <div *ngIf="registroUsuarioForm.controls['fecha'].invalid" class="invalid-feedback">
-        La fecha de nacimiento no puede ser superior a 18 años.
+        La fecha no puede ser superior a la actual {{fechaActual | date}}.
       </div>
     </div>
     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" >Registrar</button>
