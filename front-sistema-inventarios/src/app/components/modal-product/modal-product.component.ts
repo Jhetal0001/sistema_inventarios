@@ -65,9 +65,9 @@ export class ModalProductComponent {
         };
         this.backendService.addProduct(newProduct).subscribe(
           () => this.UTIL.showAlert('Registro Exitoso', 'success'),
-          (error) => {
+          () => {
             this.UTIL.showAlert(
-              'Ya existe un producto con el mismo nombre: ' + error,
+              'Ya existe un producto con el mismo nombre: ',
               'warning'
             );
           }
