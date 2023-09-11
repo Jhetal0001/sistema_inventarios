@@ -49,4 +49,10 @@ export class IngresoComponent {
   registrarCargos() {
     this.modalService.open(RegistroCargosComponent, { centered: true });
   }
+
+  ngOnInit(): void {
+    this.backService.usuarioSubject$.subscribe((users: Users) => {
+      this.usuarios = users;
+    });
+  }
 }
